@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+		integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+	<link rel='stylesheet' href='https://onesignal.github.io/emoji-picker/lib/css/emoji.css'>
+
+
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+	<title>Document</title>
+	<style>
+		body {
+			background: rgb(201, 199, 199);
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+		}
+
+		.wrap {
+			width: 70%;
+			min-width: 562px;
+			margin: 60px auto 0;
+			background: #333333;
+			border-radius: 8px;
+			box-shadow: 0 5px 8px 0 rgba(224, 224, 224, 0.4);
+			padding: 10px;
+		}
+
+		.toolbar {
+			width: 100%;
+			margin: 0 auto 10px;
+		}
+
+		button {
+			width: 30px;
+			height: 30px;
+			border-radius: 0px;
+			background: none;
+			border: none;
+			box-sizing: border-box;
+			padding: 0;
+			font-size: 20px;
+			color: #dfdfdf;
+			cursor: pointer;
+			outline: none;
+		}
+
+		button:hover {
+			border: 1px solid #cfcdcd;
+			color: rgb(219, 219, 219);
+		}
+
+		#bold,
+		#italic,
+		#underline {
+			font-size: 18px;
+		}
+
+		#underline,
+		#align-right {
+			margin-right: 17px;
+		}
+
+		#align-left {
+			margin-left: 17px;
+		}
+
+		select {
+			height: 24px;
+			font-size: 15px;
+			font-weight: bold;
+			color: #444;
+			background: #fcfcfc;
+			border: 1px solid #a6a6a6;
+			border-radius: 3px;
+			margin: 0;
+			outline: none;
+			cursor: pointer;
+		}
+
+		select>option {
+			font-size: 15px;
+			background: #fafafa;
+		}
+
+		#fonts {
+			width: 140px;
+		}
+
+		#para {
+			width: 110px;
+		}
+
+		#case {
+			width: 80px;
+		}
+
+		.sp-replacer {
+			background: #fcfcfc;
+			padding: 1px 2px 1px 3px;
+			border-radius: 3px;
+			border-color: #a6a6a6;
+			margin-top: -1px;
+		}
+
+		.sp-replacer:hover {
+			border-color: #a6a6a6;
+			color: inherit;
+		}
+
+		.sp-preview {
+			width: 15px;
+			height: 15px;
+			border: none;
+			margin-top: 2px;
+			margin-right: 3px;
+		}
+
+		.sp-preview-inner,
+		.sp-alpha-inner,
+		.sp-thumb-inner {
+			border-radius: 3px;
+		}
+
+		.editor {
+			position: relative;
+			width: 100%;
+			height: 60vh;
+			margin: 0 auto;
+			padding: 20px;
+			background: #e2e2e2;
+			border-radius: 3px;
+			box-shadow: inset 0 0 8px 1px rgba(122, 74, 74, 0.2);
+			box-sizing: border-box;
+			overflow: hidden;
+			word-break: break-all;
+			outline: none;
+
+
+			overflow-y: scroll;
+
+		}
+
+
+		.full-width {
+			width: 100%;
+			height: 100vh;
+			display: flex;
+		}
+
+		.full-width .justify-content-center {
+			display: flex;
+			align-self: center;
+			width: 100%;
+		}
+
+		.full-width .lead.emoji-picker-container {
+			width: 300px;
+			display: block;
+		}
+
+		.full-width .lead.emoji-picker-container input {
+			width: 100%;
+			height: 50px;
+		}
+
+
+
+		.dropdown-menu li {
+			position: relative;
+		}
+
+		.dropdown-menu .dropdown-submenu {
+			display: none;
+			position: absolute;
+			left: 100%;
+			top: -7px;
+		}
+
+		.dropdown-menu .dropdown-submenu-left {
+			right: 100%;
+			left: auto;
+		}
+
+		.dropdown-menu>li:hover>.dropdown-submenu {
+			display: block;
+
+		}
+	</style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+	<div class="wrap">
+		<div class="toolbar">
+			<!-- <div class="dropdown">
+				<button
+					style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px; background-color: rgba(63, 62, 62, 0.507)"
+					class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					File
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					<li><a class="dropdown-item" href="#">
+							<i class="fa fa-bold"></i>
+						</a></li>
+					<li><a class="dropdown-item" href="#"><i class="fa fa-underline"></i></a></li>
+					<li><a class="dropdown-item" href="#"><i class="fa-solid fa-strikethrough"></i></a></li>
+				</ul>
+			</div> -->
+
+			<!-- 			
+				<button
+					style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px; background-color: rgba(63, 62, 62, 0.507)"
+					class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					Edit
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					<li><a class="dropdown-item" href="#">
+							<i class="fa fa-bold"></i>
+						</a></li>
+					<li><a class="dropdown-item" href="#"><i class="fa fa-underline"></i></a></li>
+					<li><a class="dropdown-item" href="#"><i class="fa-solid fa-strikethrough"></i></a></li>
+				</ul> -->
+
+			<!-- Example single danger button -->
+			<div class="dropdown">
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					File
+				</a>
+
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#" title="new document" ><i
+								class="fa-regular fa-file"></i>&nbsp;&nbsp;New document</a></li>
+					<li><a class="dropdown-item" href="#" title="Restore last draft"><i
+								class="fa-solid fa-rotate-left"></i>&nbsp;&nbsp;Restore last draft</a></li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="#" title="Preview"><i
+								class="fa-regular fa-eye"></i>&nbsp;&nbsp;Preview</a></li>
+					<li><a class="dropdown-item" href="#" title="pdf"><i
+								class="fa-regular fa-file-pdf"></i>&nbsp;&nbsp;&nbsp;PDF</a></li>
+					<li><a class="dropdown-item" href="#" title="print"><i
+								class="fa-solid fa-print"></i>&nbsp;&nbsp;Print</a></li>
+				</ul>
+
+
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					Edit
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#" title="Undo"><i
+								class="fa-solid fa-rotate-left"></i>&nbsp;&nbsp;Undo</a></li>
+					<li><a class="dropdown-item" href="#" title="Redo"><i
+								class="fa-solid fa-rotate-right"></i>&nbsp;&nbsp;Redo</a></li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="#" title="Cut"><i class="fas fa-cut"></i>&nbsp;&nbsp;Cut</a></li>
+					<li><a class="dropdown-item" href="#" title="Copy"><i
+								class="fa-regular fa-copy"></i>&nbsp;&nbsp;Copy</a></li>
+					<li><a class="dropdown-item" href="#" title="Paste"><i
+								class="fa-regular fa-paste"></i>&nbsp;&nbsp;Paste</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+					<li><a class="dropdown-item" href="#" title="Paste as a text"><i
+								class="fa-solid fa-paste"></i>&nbsp;&nbsp;Paste as text</a></li>
+					<li><a class="dropdown-item" href="#" title="Select all"><i
+								class="fas fa-border-none"></i>&nbsp;&nbsp;Select all</a></li>
+					<li><a class="dropdown-item" href="#" title="Find & replace"><i
+								class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;Find & replace</a></li>
+
+				</ul>
+
+
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					View
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#" title="Source Code"><i
+								class="fa-solid fa-code"></i>&nbsp;&nbsp;Source Code</a></li>
+					<li><a class="dropdown-item" href="#" title="visual aids">&nbsp;&nbsp;Visual aids
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004;</a></li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+
+					<li><a class="dropdown-item" href="#" title="show invisible character"><i
+								class="fas fa-paragraph"></i>&nbsp;&nbsp;Show invisible character</a></li>
+					<li><a class="dropdown-item" href="#" title="show blocks"><i
+								class="fas fa-border-none"></i>&nbsp;&nbsp;Show blocks</a></li>
+					<li><a class="dropdown-item" href="#" title="spellcheck"><i
+								class="fas fa-spell-check"></i>&nbsp;&nbsp;Spellcheck&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&#10004;</a></li>
+					<li><a class="dropdown-item" href="#" title="Preview"><i
+								class="fa-regular fa-eye"></i>&nbsp;&nbsp;Preview</a></li>
+					<li><a class="dropdown-item" href="#" title="full secren"><i
+								class="fa-solid fa-expand"></i>&nbsp;&nbsp;&nbsp;Full Secren</a></li>
+
+				</ul>
+
+
+
+
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					Insert
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#" title="Image" type="button" data-bs-toggle="modal"
+							data-bs-target="#exampleModal2"><i class="far fa-image"></i>&nbsp;&nbsp;&nbsp;Image</a></li>			
+
+
+					<li><a class="dropdown-item" href="#" title="link" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal7" ><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;Link</a>
+					</li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="#" title="media" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal5"><i
+								class="fa-solid fa-photo-film"></i>&nbsp;&nbsp;&nbsp;Media</a></li>
+					<li><a class="dropdown-item" href="#" title="insert/edit iframe" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal123"><i
+								class="fas fa-terminal"></i>&nbsp;&nbsp;&nbsp;Insert/edit iframe</a></li>
+					<li><a class="dropdown-item" href="#" title="insert template"><i
+								class="fa-solid fa-temperature-empty"></i>&nbsp;&nbsp;&nbsp;Insert template</a></li>
+					<li><a class="dropdown-item" href="#" title="code sample"  type="button"
+					 data-bs-toggle="modal" data-bs-target="#exampleModal13"><i
+								class="fa-solid fa-file-code"></i>&nbsp;&nbsp;&nbsp;Code sample</a></li>
+					<li><a class="dropdown-item" href="#" title="table"><i
+								class="fa-solid fa-table"></i>&nbsp;&nbsp;&nbsp;Table</a></li>
+					<li><a class="dropdown-item" href="#" title="emoji"  type="button"
+						 data-bs-toggle="modal" data-bs-target="#exampleMo"
+						data-bs-whatever="@getbootstrap" title="choose emoji" ><i
+								class="fas fa-laugh"></i>&nbsp;&nbsp;&nbsp;Emoji</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+					<li><a class="dropdown-item" href="#" title="horizontal line"><i
+								class="fas fa-ellipsis-h"></i>&nbsp;&nbsp;&nbsp;Horizontal line</a></li>
+					<li><a class="dropdown-item" href="#" title="page break"><i
+								class="fas fa-file-alt"></i>&nbsp;&nbsp;&nbsp;Page braeak</a></li>
+					<li><a class="dropdown-item" href="#" title="anchor"  type="button"
+						 data-bs-toggle="modal" data-bs-target="#exampleModal12" ><i
+								class="fas fa-anchor"></i>&nbsp;&nbsp;&nbsp;Anchor</a></li>
+					<li><a class="dropdown-item" href="#" title="table of contents"><i
+								class="fa-solid fa-table-cells"></i>&nbsp;&nbsp;&nbsp;Table of contents</a></li>
+					<li><a class="dropdown-item" href="#" title="date & time"><i
+								class="far fa-clock"></i>&nbsp;&nbsp;&nbsp;Date & Time</a></li>
+
+
+				</ul>
+
+
+
+
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					Format
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#" title="bold"><i class="fa fa-bold"></i>&nbsp;&nbsp;Bold</a>
+					</li>
+
+					<li><a class="dropdown-item" href="#" title="italic"><i
+								class="fa fa-italic"></i>&nbsp;&nbsp;Italic</a></li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="#" title="underline"><i
+								class="fa fa-underline"></i>&nbsp;&nbsp;Underline</a></li>
+					<li><a class="dropdown-item" href="#" title="strikthrough"><i
+								class="fa-solid fa-strikethrough"></i>&nbsp;&nbsp;Strikethrough</a></li>
+					<li><a class="dropdown-item" href="#" title="superscript"><i
+								class="fas fa-superscript"></i>&nbsp;&nbsp;Superscript</a></li>
+					<li><a class="dropdown-item" href="#" title="subscript"><i
+								class="fas fa-subscript"></i>&nbsp;&nbsp;&nbsp;Subscript</a></li>
+					<li><a class="dropdown-item" href="#" title="code"><i
+								class="fa-solid fa-code"></i>&nbsp;&nbsp;&nbsp;Code</a></li>
+
+					<li>
+						<a class="dropdown-item" href="#">
+							Format &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+							<li>
+								<a class="dropdown-item" href="#">Headings &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+								<ul class="dropdown-menu dropdown-submenu">
+									<li>
+										<a class="dropdown-item" href="#">
+											<h1>Heading 1</h1>
+										</a>
+										<a class="dropdown-item" href="#">
+											<h2>Heading 2</h2>
+										</a>
+										<a class="dropdown-item" href="#">
+											<h3>Heading 3</h3>
+										</a>
+										<a class="dropdown-item" href="#">
+											<h4>Heading 4</h4>
+										</a>
+										<a class="dropdown-item" href="#">
+											<h5>Heading 5</h5>
+										</a>
+										<a class="dropdown-item" href="#">
+											<h6>Heading 6</h6>
+										</a>
+									</li>
+								</ul>
+
+
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Inline &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+								<ul class="dropdown-menu dropdown-submenu">
+									<li>
+										<a class="dropdown-item" href="#">Bold</a>
+										<a class="dropdown-item" href="#">Italic</a>
+										<a class="dropdown-item" href="#">Underline</a>
+										<a class="dropdown-item" href="#">Strikthrough</a>
+										<a class="dropdown-item" href="#">Superscript</a>
+										<a class="dropdown-item" href="#">Subscript</a>
+										<a class="dropdown-item" href="#">Code</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Blocks &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo; </a>
+								<ul class="dropdown-menu dropdown-submenu">
+									<li>
+										<a class="dropdown-item" href="#">Paragraph</a>
+										<a class="dropdown-item" href="#">Blockquote</a>
+										<a class="dropdown-item" href="#">Div</a>
+										<a class="dropdown-item" href="#">Pre</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Align &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo; </a>
+								<ul class="dropdown-menu dropdown-submenu">
+									<li>
+										<a class="dropdown-item" href="#">Left</a>
+										<a class="dropdown-item" href="#">Center</a>
+										<a class="dropdown-item" href="#">Right</a>
+										<a class="dropdown-item" href="#">Justify</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.comment</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.prolog</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.doctype</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.cdata</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.punctuation</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.property</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.tag</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.boolean</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.number</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.constant</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.sysmbol</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.deleted</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.selector</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.attr-name</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.string</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.char</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.bulitin</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.inserted</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.operator</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.entity</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.url</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.atrule</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.attr-value</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.keyword</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.function</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.class-name</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.regex</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">token.important</a>
+							</li>
+						</ul>
+					</li>
+
+
+
+
+
+
+
+
+					<li>
+						<a class="dropdown-item" href="#">
+							Blocks &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+
+							<li>
+								<a class="dropdown-item" href="#">
+									Paragraph</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<h1>Heading 1</h1>
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<h2>Heading 2</h2>
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<h3>Headig 3</h3>
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<h4>Heading 4
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<h5>Heading 5</h5>
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<h6>Heading 6</h6>
+								</a>
+							</li>
+
+						</ul>
+					</li>
+
+
+
+					<li>
+						<a class="dropdown-item" href="#">
+							Fonts &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+
+							<li>
+								<a class="dropdown-item" href="#">
+									Andale Mono</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Arial</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Arial Black
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Book Antiqua
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Comic sans MS
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Courier New
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Georgia
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Helvetica
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Impact
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Tahoma
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Terminal
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Verdana
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Webdings
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Wingdings
+								</a>
+							</li>
+						</ul>
+					</li>
+
+
+
+					<li>
+						<a class="dropdown-item" href="#">
+							Font sizes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+
+							<li>
+								<a class="dropdown-item" href="#">
+									8pt</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									10pt</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									12pt
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									14pt
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									18pt
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									24pt
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									36pt
+								</a>
+							</li>
+						</ul>
+					</li>
+
+
+
+
+					<li>
+						<a class="dropdown-item" href="#">
+							Align &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+
+							<li>
+								<a class="dropdown-item" href="#">
+									<i class="fas fa-align-left"></i>&nbsp;&nbsp;Left</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<i class="fas fa-align-right"></i>&nbsp;&nbsp;Right</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<i class="fas fa-align-center"></i>&nbsp;&nbsp;Center</a>
+
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									<i class="fas fa-align-justify"></i>&nbsp;&nbsp;Justify</a>
+
+							</li>
+
+						</ul>
+					</li>
+
+
+
+					<li>
+						<a class="dropdown-item" href="#">
+							Line height &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+
+							<li>
+								<a class="dropdown-item" href="#">
+									1</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									1.1</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									1.2</a>
+
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									1.3</a>
+
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									1.4</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									1.5</a>
+
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									2</a>
+
+							</li>
+
+						</ul>
+					</li>
+
+
+					<li>
+						<a class="dropdown-item" href="#">
+							<i title="Text color" class="fa-solid fa-font" style="background:#ebebeb"></i>
+							&nbsp;&nbsp;
+							Text color &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+
+							<li>
+								<input type="color" onchange="execVal('foreColor',this.value)" />
+
+							</li>
+
+						</ul>
+					</li>
+
+					<li>
+						<a class="dropdown-item" href="#">
+							<i title="Background color" class="fa-solid fa-eye-dropper" style="background:#f3f3f3"></i>
+							&nbsp;&nbsp;
+							Background color &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+
+							<li>
+
+								<input type="color" onchange="execVal('foreColor',this.value)" />
+
+							</li>
+
+						</ul>
+					</li>
+
+
+					<li>
+						<a class="dropdown-item" href="#">
+							Language &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+							<li>
+								<a class="dropdown-item" href="#">
+									English</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Spanish</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									French</a>
+							</li>
+
+							<li>
+								<a class="dropdown-item" href="#">
+									German</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Portuguese</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Chinese</a>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<a class="dropdown-item" href="#">
+							<i class="fas fa-remove-format"></i>&nbsp;&nbsp;&nbsp;&nbsp;Clear formatting
+						</a>
+
+					</li>
+
+
+				</ul>
+
+
+
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					Tools
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#" title="spellcheck"><i
+								class="fas fa-spell-check"></i>&nbsp;&nbsp;Spellcheck&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&#10004;</a></li>
+
+
+
+
+					<li>
+						<a class="dropdown-item" href="#">
+							Spellcheck Language &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+						</a>
+						<ul class="dropdown-menu dropdown-submenu">
+
+							<li>
+								<a class="dropdown-item" href="#">
+									Off</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									English(US)</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									English(UK)</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Danish</a>
+							</li>
+
+							<li>
+								<a class="dropdown-item" href="#">
+									Dutch</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Finnish</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									French</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									German</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Italian</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Norwegian Bokmal</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Portuguese</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">
+									Spanish</a>
+							</li>
+						</ul>
+					</li>
+
+
+					<li><a class="dropdown-item" href="#" title="accessibilty cheker">
+							<i class="fas fa-male"></i>&nbsp;&nbsp;Accessibilty Checker</a></li>
+
+					<li><a class="dropdown-item" href="#" title="Source Code"><i
+								class="fa-solid fa-code"></i>&nbsp;&nbsp;Source Code</a></li>
+
+
+					<li><a class="dropdown-item" href="#" title="word counter"><i
+								class="fas fa-calculator"></i>&nbsp;&nbsp;Word count</a></li>
+
+
+				</ul>
+
+
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					Table
+				</a>
+
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#"><i
+								class="fas fa-table"></i>&nbsp;&nbsp;Table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+					</li>
+
+					<li><a class="dropdown-item" href="#" ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+					<ul class=" dropdown-menu dropdown-submenu">
+					<li>
+						<a class="dropdown-item" href="#">
+							<i class="fa-solid fa-table-cells"></i>&nbsp;&nbsp;Cell properties</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="#">
+							<i class="fa-solid fa-border-all"></i>&nbsp;&nbsp;Merge cells</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="#">
+							<i class="fas fa-border-none"></i>&nbsp;&nbsp;Split cell</a>
+					</li>
+				</ul>
+				</li>
+				<li><a class="dropdown-item" href="#" ">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Row&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+					<ul class=" dropdown-menu dropdown-submenu">
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-arrow-up"></i>&nbsp;&nbsp;Insert row before</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-arrow-down"></i></i>&nbsp;&nbsp;Insert row after</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-delete-left"></i>&nbsp;&nbsp;Delete row</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-scissors"></i>&nbsp;&nbsp;Cut row</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-clone"></i>&nbsp;&nbsp;Copy row</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-paste"></i>&nbsp;&nbsp;Paste row before</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-paste"></i>&nbsp;&nbsp;Paste row after</a>
+						</li>
+					</ul>
+				</li>
+				<li><a class="dropdown-item" href="#">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Column&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+					<ul class=" dropdown-menu dropdown-submenu">
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-arrow-up"></i>&nbsp;&nbsp;Insert column before</a>
+
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-arrow-down"></i></i>&nbsp;&nbsp;Insert column after</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-delete-left"></i>&nbsp;&nbsp;Delete column</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-scissors"></i>&nbsp;&nbsp;Cut column</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-clone"></i>&nbsp;&nbsp;Copy column</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-paste"></i>&nbsp;&nbsp;Paste column before</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								<i class="fa-solid fa-paste"></i>&nbsp;&nbsp;Paste column after</a>
+						</li>
+					</ul>
+				</li>
+
+
+				<li>
+					<a class="dropdown-item" href="#">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;
+					</a>
+					<ul class="dropdown-menu dropdown-submenu">
+
+						<li>
+							<a class="dropdown-item" href="#">
+								sort table by column ascending</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								sort table by column descending</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">
+								Advanced sort</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a class="dropdown-item" href="#">
+						Table properties</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="#">
+						<i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Delete table</a>
+				</li>
+				</ul>
+
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					Help
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" href="#"><i class="fas fa-question-circle"></i>&nbsp;&nbsp;Help</a>
+					</li>
+				</ul>
+			</div>
+
+
+
+
+
+
+			<button id="undo" title="undo"><i class="fa-solid fa-rotate-left"></i></button>
+			<button id="redo" title="redo"><i class="fa-solid fa-rotate-right"></i></button>
+			<button id="bold" title="Bold"><i class="fa fa-bold"></i></button>
+			<button id="italic" title="Italic"><i class="fa fa-italic"></i></button>
+			<button id="underline" title="Underline"><i class="fa fa-underline"></i></button>
+			<button id="strikethrough" title="strikethrough"><i class="fa-solid fa-strikethrough"></i></button>
+			<select name="fonts" id="fonts">
+				<option value="Arial" selected>Arial</option>
+				<option value="Georgia">Georgia</option>
+				<option value="Tahoma">Tahoma</option>
+				<option value="Times New Roman">Times New Roman</option>
+				<option value="Verdana">Verdana</option>
+				<option value="Impact">Impact</option>
+				<option value="Courier New">Courier New</option>
+			</select>
+			<select name="size" id="size">
+				<option value="8">8</option>
+				<option value="10">10</option>
+				<option value="12">12</option>
+				<option value="14">14</option>
+				<option value="16" selected>16</option>
+				<option value="18">18</option>
+				<option value="20">20</option>
+				<option value="22">22</option>
+				<option value="24">24</option>
+				<option value="26">26</option>
+			</select>
+			<select name="para" id="para">
+				<option value="para" selected>Paragraph</option>
+				<option value="h1">
+					<h1>Heading 1</h1>
+				</option>
+				<option value="h2">Heading 2</option>
+				<option value="h3">Heading 3</option>
+				<option value="h4">Heading 4</option>
+				<option value="h5">Heading 5</option>>
+				<option value="h6">Heading 6</option>
+			</select>
+
+			<button id="align-left" title="Left"><i class="fa fa-align-left"></i></button>
+			<button id="align-center" title="Center"><i class="fa fa-align-center"></i></button>
+			<button id="align-right" title="Right"><i class="fa fa-align-right"></i></button>
+			<button id="justify" title="justify"><i class="fa-solid fa-align-justify"></i></button>
+
+			<button id="list-ul" title="Unordered List"><i class="fa fa-list-ul"></i></button>
+			<button id="list-ol" title="Ordered List"><i class="fa fa-list-ol"></i></button>
+			<button id="list-check" title="Check List"><i class="fa-solid fa-list-check"></i></button>
+
+			<i title="Text color" class="fa-solid fa-font" style="background:#ebebeb"></i>
+			<input type="color" onchange="execVal('foreColor',this.value)" />
+
+			<i title="Background color" class="fa-solid fa-eye-dropper" style="background:#f3f3f3"></i>
+			<input type="color" onchange="execVal('foreColor',this.value)" />
+
+
+			<select name="case" id="case">
+				<option value="title">Title</option>
+				<option value="upper">Uppercase</option>
+				<option value="lower">Lowercase</option>
+			</select>
+
+			<button id="pen" title="Permanent pen"><i class="fa-solid fa-paint-brush"></i></button>
+			<button id="format" title="Format painter"><i class="fa-solid fa-paint-roller"></i></button>
+			<button id="clear" title="Clear Format"><i class="fas fa-remove-format"></i></button>
+			<button id="espand" title="Expand"><i class="fas fa-expand-arrows-alt"></i></button>
+			<button id="preview" title="Preview"><i class="fa-regular fa-eye"></i></button>
+			<button id="save" title="Save"><i class="far fa-save"></i></button>
+			<button id="print" title="Print"><i class="fas fa-print"></i></button>
+
+			<!-- <button id="embed" title="embed-iframe"><i class="fas fa-terminal"></i></button> -->
+			<button id="template" title="insert template"><i class="fa-solid fa-temperature-empty"></i></button>
+
+			<!-- <button id="code sample" title="code sample"><i class="fa-solid fa-file-code"></i></button> -->
+			<button id="accessibilty" title="accessibilty cheker"><i class="fas fa-male"></i></button>
+			<button id="left" title="left to right"><i class="fas fa-arrow-right"></i></button>
+			<button id="right" title="right to left"><i class="fas fa-arrow-left"></i></button>
+
+
+
+
+
+			<button title="insert-file" id="insert-file"
+				style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px; background-color: #333232;"
+				type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<i class="fas fa-upload"></i>
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Insert A File</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<form accept="">
+							<div class="modal-body">
+								<input type="file" id="file" name="file" accept="file/*" required>
+							</div>
+							<div class="modal-footer">
+
+								<button style="font-size: 8px;padding: 3px;margin-left: 10px;margin-bottom: 9px;"
+									type="submit" class="btn btn-primary" value="submit">Submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+			<!-- <button id="image" title="Insert image"><i class="far fa-image"></i></button> -->
+			<button title="insert-image" id="insert-image"
+				style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px; background-color: #333232;"
+				type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+				<i class="far fa-image"></i>
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Insert A Image</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<form accept="">
+							<div class="modal-body">
+								<label>Genaral</label>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#exampleModal3" data-bs-whatever="@mdo"
+									style="font-size: 18px;padding: 2px;margin-bottom: 7px;background-color:black;"><i
+										class="fas fa-upload"></i></button>
+								<label>Upload</label>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#exampleModal4" data-bs-whatever="@mdo"
+									style="font-size: 18px;padding: 2px;margin-bottom: 7px;background-color:black;"><i
+										class="fas fa-upload"></i></button>
+							</div>
+							<div class="modal-footer">
+								<button style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"
+									type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
+										class="fas fa-times"></i></button>
+								<!-- <button style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"
+								type="submit" class="btn btn-light" value="submit" data-bs-submit="modal"><i
+									class="fas fa-upload"></i></button> -->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Genaral</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+								<div class="mb-3">
+									<label for="recipient-name" class="col-form-label">Image Name</label>
+									<input type="text" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+									<label for="recipient-name" class="col-form-label">URL</label>
+									<input type="url" class="form-control" id="recipient-name" accept="image/*"
+										required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Height:</label>
+									<input type="number" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Width:</label>
+									<input type="number" class="form-control" id="recipient-name" required>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Upload</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Image Name</label>
+									<input type="text" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+
+									<input type="file" class="image" id="image" accept="image/*" required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Height:</label>
+									<input type="number" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Width:</label>
+									<input type="number" class="form-control" id="recipient-name" required>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<!-- <button id="media" title="Insert media"><i class="fas fa-photo-video"></i></button> -->
+			<button title="insert-video" id="insert-video"
+				style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px; background-color: #333232;"
+				type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal5">
+				<i class="fas fa-photo-video"></i>
+			</button>
+
+			<!-- Modal -->
+			
+			<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Insert Video</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<form accept="">
+							<div class="modal-body">
+								<label>Genaral</label>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#exampleModal9" data-bs-whatever="@mdo"
+									style="font-size: 18px;padding: 2px;margin-bottom: 7px;background-color:black;"><i
+										class="fas fa-upload"></i></button>
+								<label>Embed</label>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#exampleModal10" data-bs-whatever="@mdo"
+									style="font-size: 18px;padding: 2px;margin-bottom: 7px;background-color:black;"><i
+										class="fas fa-upload"></i></button>
+								<label>Advanced</label>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#exampleModal11" data-bs-whatever="@mdo"
+									style="font-size: 18px;padding: 2px;margin-bottom: 7px;background-color:black;"><i
+										class="fas fa-upload"></i></button>
+							</div>
+							<div class="modal-footer">
+								<button style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"
+									type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
+										class="fas fa-times"></i></button>
+								<!-- <button style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"
+								type="submit" class="btn btn-light" value="submit"><i
+									class="fas fa-upload"></i></button> -->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="exampleModal9" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Genaral</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+
+								<div class="mb-3">
+									<label for="recipient-name" class="col-form-label">Source</label>
+									<input type="file" class="form-control" id="recipient-name" accept="video/*"
+										required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Height:</label>
+									<input type="number" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Width:</label>
+									<input type="number" class="form-control" id="recipient-name" required>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="modal fade" id="exampleModal10" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Embed</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Embed your code</label>
+									<textarea type="text" class="form-control" id="recipient-name" required></textarea>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="modal fade" id="exampleModal11" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Advanced</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Source URL</label>
+									<input type="url" class="form-control" id="recipient-name" required>
+								</div>
+
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 7px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+			<!-- <button id="link" title="Insert link"><i class="fas fa-link"></i></button> -->
+			<!-- <button id="insert" title="Insert"><i class="fas fa-upload"></i></button> -->
+			<button title="insert link" id="insert-link"
+				style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px; background-color: #333232;"
+				type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal7">
+				<i class="fas fa-link"></i>
+			</button>
+
+			<!-- Modal -->
+
+			<div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Insert Link</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">URL</label>
+									<input type="url" class="form-control" id="recipient-name" required>
+								</div>
+
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Text to display</label>
+									<input type="text" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Title</label>
+									<input type="text" class="form-control" id="recipient-name" required>
+								</div>
+								<label for="message-text" class="col-form-label">Open link in...</label>
+								<div class="form-floating mb-3">
+									
+									<select class="form-select  mb-3" >
+										<option value="html" selected>Current window</option>
+										<option value="">New window</option>
+									
+									</select>								
+								</div>
+								<div class="form-floating mb-3">
+									
+									<select class="form-select  mb-3" >
+										<option value="html" selected>None</option>
+										<option value="">My page 1</option>
+										<option value="">My page 2</option>
+									
+									</select>								
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 7px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+			<button style="font-size: 18px;padding: 2px;margin-bottom: 7px; background-color: #2e2c2c;" type="button"
+				class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleMo"
+				data-bs-whatever="@getbootstrap" title="choose emoji"><i class="fas fa-surprise"></i></button>
+
+			<div class="modal fade" id="exampleMo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Choose Your Emoji</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<form class="emo">
+							<div class="modal-body">
+								<div class="container half-width">
+									<div class="row justify-content-center">
+										<p class="lead emoji-picker-container">
+											<input type="textbox" data-emoji-input="unicode" class="form-control"
+												placeholder="Input field" data-emojiable="true">
+
+											<!-- <button type="button" data-emoji-input="unicode" class="form-control"
+                                            placeholder="Input field" data-emojiable="true"></button> -->
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"
+									type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
+										class="fas fa-times"></i></button>
+								<button style="font-size: 7px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"
+									type="submit" class="btn btn-primary" value="submit">Submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!-- <button id="anchor" title="anchor"></button> -->
+			<button style="font-size: 18px;padding: 2px;margin-bottom: 7px; background-color: #2e2c2c;" type="button"
+				class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal12" title="anchor"><i
+					class="fas fa-anchor"></i></button>
+			<!-- modal -->
+			<div class="modal fade" id="exampleModal12" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Anchor</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">ID</label>
+									<input type="" class="form-control" id="recipient-name" required>
+								</div>
+
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 7px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<button style="font-size: 18px;padding: 2px;margin-bottom: 7px; background-color: #2e2c2c;" type="button"
+				class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal13" title="code sample"><i
+				class="fa-solid fa-file-code"></i></button>
+			<!-- modal -->
+			<div class="modal fade" id="exampleModal13" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Insert/Edit Code Sample</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+								<label for="message-text" class="col-form-label">Language</label>
+								<div class="form-floating mb-3">
+									
+									<select class="form-select  mb-3" >
+										<option value="html" selected>HTML/XML</option>
+										<option value="">Javascript</option>
+										<option value="">CSS</option>
+										<option value="">PHP</option>
+										<option value="">Ruby</option>
+										<option value="">Python</option>
+										<option value="">Java</option>
+										<option value="">C++</option>
+										<option value="">C#</option>
+										<option value="">C</option>
+									</select>
+																
+									
+								</div>
+
+<!-- 
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Code View</label>
+									<textarea type="" class="form-control" id="recipient-name" required></textarea>
+								</div> -->
+
+								<div class="form-outline mb-4">
+									<label class="form-label" for="textAreaExample6" >Code View</label>
+									<textarea class="form-control" id="textAreaExample6" rows="15" ></textarea>
+									
+								  </div>
+
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 7px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<button title="embed iframe" id="embed iframe"
+				style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px; background-color: #333232;"
+				type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal123">
+				<i class="fas fa-terminal"></i>
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal123" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Insert/Edit iframe</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<form accept="">
+							<div class="modal-body">
+								<label>Genaral</label>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#exampleModal21" data-bs-whatever="@mdo"
+									style="font-size: 18px;padding: 2px;margin-bottom: 7px;background-color:black;"><i
+										class="fas fa-upload"></i></button>
+								<label>Advanced</label>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+									data-bs-target="#exampleModal22" data-bs-whatever="@mdo"
+									style="font-size: 18px;padding: 2px;margin-bottom: 7px;background-color:black;"><i
+										class="fas fa-upload"></i></button>
+							</div>
+							<div class="modal-footer">
+								<button style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"
+									type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
+										class="fas fa-times"></i></button>
+								<!-- <button style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"
+								type="submit" class="btn btn-light" value="submit" data-bs-submit="modal"><i
+									class="fas fa-upload"></i></button> -->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="exampleModal21" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Genaral</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+								<div class="mb-3">
+									<label for="recipient-name" class="col-form-label">Source</label>
+									<input type="text" class="form-control" id="recipient-name" required>
+									<input type="file" class="form-control" id="recipient-name" accept="file/*"
+										>
+								</div>
+								<div class="form-floating mb-3">
+									
+									<select class="form-select  mb-3" >
+										<option value="html" selected>Inline Value</option>
+										<option value="">Responsive - 21x9</option>
+										<option value="">Responsive - 16x9</option>
+										<option value="">Responsive - 4x3</option>
+										<option value="">Responsive - 1x1</option>
+									</select>								
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Height:</label>
+									
+									<input type="text" class="form-control" id="recipient-name" required placeholder="350px" >
+									
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Width:</label>
+									<input type="text" class="form-control" id="recipient-name" required placeholder="260px">
+									
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 18px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="modal fade" id="exampleModal22" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Advanced</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form accept="">
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Name</label>
+									<input type="text" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Title</label>
+									<input type="text" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+									<label for="message-text" class="col-form-label">Long Description URL</label>
+									<input type="text" class="form-control" id="recipient-name" required>
+								</div>
+								<div class="mb-3">
+									<h6>Border:</h6>
+									<input type="checkbox" checked>
+									<h6>Show iframe border</h6>
+								</div>
+								<div class="mb-3">
+									<h6>Scrollbar:</h6>
+									<input type="checkbox">
+									<h6>Enabel scrollbar</h6>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;"><i
+									class="fas fa-times"></i></button>
+							<button type="button" class="btn btn-primary"
+								style="font-size: 9px;padding: 2px;margin-left: 12px;margin-bottom: 7px;">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+			<button id="pdf" title="Insert pdf"><i class="far fa-file-alt"></i></button>
+
+
+
+		</div>
+		<div class="editor" contenteditable></div>
+	</div>
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script src='https://onesignal.github.io/emoji-picker/lib/js/config.js'></script>
+	<script src='https://onesignal.github.io/emoji-picker/lib/js/util.js'></script>
+	<script src='https://onesignal.github.io/emoji-picker/lib/js/jquery.emojiarea.js'></script>
+	<script src='https://onesignal.github.io/emoji-picker/lib/js/emoji-picker.js'></script>
+
+	<script>
+		$(function () {
+			// Initializes and creates emoji set from sprite sheet
+			window.emojiPicker = new EmojiPicker({
+				emojiable_selector: '[data-emojiable=true]',
+				assetsPath: 'http://onesignal.github.io/emoji-picker/lib/img/',
+				popupButtonClasses: 'fa fa-smile-o'
+			});
+			// Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+			// You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+			// It can be called as many times as necessary; previously converted input fields will not be converted again
+			window.emojiPicker.discover();
+		});
+	</script>
+</body>
+
+</html>
